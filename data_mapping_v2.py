@@ -4,15 +4,11 @@ import time
 from typing import Dict, List, Optional
 import pandas as pd
 import numpy as np
-from .config import BASE_DIR, RAW_DATA_DIR, OUTPUT_DIR
+from config import  OUTPUT_DIR,RAW_TD_DIR,RAW_OPER_TIME_FILE,RAW_QUALITY_FILE
 
 """
 时序数据合表 - 修复版（含运行时间统计）
 """
-
-TD_DIR = os.path.join(RAW_DATA_DIR, "tb")
-QUALITY_FILE = os.path.join(RAW_DATA_DIR, "select_v_quality_all.xlsx")
-OPER_TIME_FILE = os.path.join(RAW_DATA_DIR, "v_jk_oper_time.xlsx")
 
 PROCEDURE_FILES: Dict[str, List[str]] = {
     "RM": [
@@ -109,7 +105,7 @@ def discover_csv_files() -> Dict[str, List[str]]:
     for procedure, patterns in PROCEDURE_FILES.items():
         actual_files = []
         for pattern in patterns:
-            search_path = os.path.join(TD_DIR, pattern)
+            search_path = os.path.join(RAW_TD_DIR, pattern)
             matching = glob.glob(search_path)
             csv_files = [os.path.basename(f) for f in matching if f.endswith('.csv')]
             actual_files.extend(csv_files)
@@ -121,8 +117,8 @@ def discover_csv_files() -> Dict[str, List[str]]:
 
 def load_base_tables():
     print("读取质量表和工序时间表 ...")
-    df_quality = pd.read_excel(QUALITY_FILE)
-    df_oper = pd.read_excel(OPER_TIME_FILE)
+    df_quality = pd.read_excel(RAW_QUALITY_FILE)
+    df_oper = pd.read_excel(RAW_OPER_TIME_FILE)
 
     if "SLAB_ID" not in df_quality.columns:
         if "FUR_EXIT_SLAB_ID" in df_quality.columns:
@@ -150,7 +146,7 @@ def load_process_data(filename: str) -> pd.DataFrame:
     if cfg is None:
         raise ValueError(f"无配置: {filename}")
 
-    path = os.path.join(TD_DIR, filename)
+    path = os.path.join(RAW_TD_DIR, filename)
     if not os.path.exists(path):
         raise FileNotFoundError(path)
 
@@ -398,7 +394,7 @@ def main():
     unique_slab_ids = df_oper["SLAB_ID"].unique()
     print(f"总 SLAB_ID 数量: {len(unique_slab_ids)}")
 
-    out_path = os.path.join(OUTPUT_DIR, "process_timeseries_clean.csv")
+    out_path = os.path.join(OUTPUT_DIR, "process_timeseries_clean_raw.csv")
     if os.path.exists(out_path):
         os.remove(out_path)
 

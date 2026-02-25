@@ -8,6 +8,7 @@ BASE_DIR = 'E:/SGAI_Project/data_clean'
 RAW_DATA_DIR = os.path.join(BASE_DIR, "data")
 FILTERED_DATA_DIR = os.path.join(BASE_DIR, "filter")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+OUTPUT_STATS_DIR= os.path.join(BASE_DIR, "stats")
 
 # RAW_DATA
 RAW_TD_DIR = os.path.join(RAW_DATA_DIR, "tb")

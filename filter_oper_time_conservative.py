@@ -1,13 +1,10 @@
 import pandas as pd
 import os
 import numpy as np
-
+from config import RAW_OPER_TIME_FILE,FILTERED_DATA_DIR
 # ====================== 配置路径 ======================
-BASE_DIR = 'E:/SGAI_Project/data_clean'
-OPER_TIME_FILE = os.path.join(BASE_DIR, "data", "v_jk_oper_time.xlsx")  # 原始文件路径
-FILTER_DIR = os.path.join(BASE_DIR, "filter")
-os.makedirs(FILTER_DIR, exist_ok=True)
-OUTPUT_FILE = os.path.join(FILTER_DIR, "oper_time_filtered_conservative.xlsx")  # 输出清洗后文件
+OPER_TIME_FILE = RAW_OPER_TIME_FILE  # 原始文件路径
+OUTPUT_FILE = os.path.join(FILTERED_DATA_DIR, "oper_time_filtered_conservative.xlsx")  # 输出清洗后文件
 
 # ====================== 读取 & 基础处理 ======================
 print("读取工序时间表...")

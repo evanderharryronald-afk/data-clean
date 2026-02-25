@@ -1,11 +1,8 @@
 import pandas as pd
 import os
+from config import RAW_OPER_TIME_FILE,OUTPUT_STATS_DIR
 
-# ====================== 配置路径 ======================
-OPER_TIME_FILE = r'E:/SGAI_Project/data_clean/data/v_jk_oper_time.xlsx'  # 改成你的实际路径
-OUTPUT_STATS_DIR = r'E:/SGAI_Project/data_clean/stats/'                 # 输出统计结果的文件夹
-os.makedirs(OUTPUT_STATS_DIR, exist_ok=True)
-
+OPER_TIME_FILE= RAW_OPER_TIME_FILE  # 原始工序时间表路径
 # ====================== 读取 & 基础处理 ======================
 print("读取工序时间表...")
 df = pd.read_excel(OPER_TIME_FILE)
