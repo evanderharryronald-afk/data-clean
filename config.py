@@ -13,6 +13,7 @@ BASE_DIR = Path("E:/SGAI_Project/data_clean").resolve()
 RAW_DATA_DIR = BASE_DIR / "data"
 FILTERED_DATA_DIR = BASE_DIR / "filter"
 OUTPUT_DIR = BASE_DIR / "output"
+STATS_DIR = BASE_DIR / "stats"
 OUTPUT_STATS_DIR = BASE_DIR / "stats"
 
 # ====================== RAW DATA ======================
