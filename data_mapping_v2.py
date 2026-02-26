@@ -4,54 +4,11 @@ import time
 from typing import Dict, List, Optional
 import pandas as pd
 import numpy as np
-from config import  OUTPUT_DIR,RAW_TD_DIR,RAW_OPER_TIME_FILE,RAW_QUALITY_FILE
+from config import  OUTPUT_DIR,RAW_TD_DIR,RAW_OPER_TIME_FILE,RAW_QUALITY_FILE,PROCEDURE_FILES
 
 """
 时序数据合表 - 修复版（含运行时间统计）
 """
-
-PROCEDURE_FILES: Dict[str, List[str]] = {
-    "RM": [
-        "tb_rm_speed_meas_*.csv",
-        "tb_rm_roll_force_*.csv",
-        "tb_rm_red_meas_*.csv",
-        "tb_rm_pyro_meter_load_before_*.csv",
-        "tb_rm_pyro_meter_load_after_*.csv",
-    ],
-    "FM": [
-        "tb_fm_speed_meas_*.csv",
-        "tb_fm_roll_force_meas_*.csv",
-        "tb_fm_red_meas_*.csv",
-        "tb_fm_pyro_meter_load_before_*.csv",
-        "tb_fm_pyro_meter_load_after_*.csv",
-        "tb_fm_exit_os_thick_meas_*.csv",
-        "tb_fm_exit_ds_thick_meas_*.csv",
-    ],
-    "PPL": [
-        "tb_pre_leveller_speed_*.csv",
-        "tb_pre_leveller_force_all_*.csv",
-        "tb_pre_leveller_pyro_meter_load_after_*.csv",
-    ],
-    "UFC": [
-        "tb_ufc_temp_meas_*.csv",
-        "tb_ufc_water_press_set_*.csv",
-        "tb_ufc_spiny_water_ratio_*.csv",
-    ],
-    "ACC": [
-        "tb_acc_pyro_meter_load_before_*.csv",
-        "tb_acc_pyro_meter_load_after_*.csv",
-        "tb_acc_water_press_set_*.csv",
-        "tb_acc_spiny_water_ratio_*.csv",
-    ],
-    "HPL": [
-        "tb_hot_leveller_temp_entry_*.csv",
-    ],
-    "DESCALING": [
-        "tb_desc_water_press_entry_*.csv",
-        "tb_desc_water_press_exit_*.csv",
-        "tb_desc_pyro_meter_load_after_*.csv",
-    ],
-}
 
 PROCESS_COLUMNS_CONFIG: Dict[str, Dict] = {
     "tb_rm_speed_meas":                     {"time_col": "ts", "value_cols": ["val"], "alias": "RM_SPEED"},
