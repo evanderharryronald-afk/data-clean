@@ -31,7 +31,7 @@ FILTERED_TD_DIR = FILTERED_DATA_DIR / "tb_filtered"
 FILTERED_QUALITY_FILE = RAW_QUALITY_FILE
 
 # 工序时间数据（可切换版本）
-FILTERED_OPER_TIME_FILE = FILTERED_DATA_DIR / "oper_time_filtered_moderate_v1.xlsx"
+FILTERED_OPER_TIME_FILE = FILTERED_DATA_DIR/"oper_time_filtered"/ "oper_time_filtered_auto.xlsx"
 
 # ====================== 自动创建关键目录 ======================
 
