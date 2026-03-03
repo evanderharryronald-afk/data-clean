@@ -45,24 +45,94 @@ for path in [
 ]:
     path.mkdir(parents=True, exist_ok=True)
 
+# # ====================== 工序文件映射 ======================
+# PROCEDURE_FILES: Dict[str, List[str]] = {
+#     "RM": [
+#         "tb_rm_speed_meas_*.csv",
+#         "tb_rm_roll_force_*.csv",
+#         "tb_rm_red_meas_*.csv",
+#         "tb_rm_pyro_meter_load_before_*.csv",
+#         "tb_rm_pyro_meter_load_after_*.csv",
+#     ],
+#     "FM": [
+#         "tb_fm_speed_meas_*.csv",
+#         "tb_fm_roll_force_meas_*.csv",
+#         "tb_fm_red_meas_*.csv",
+#         "tb_fm_pyro_meter_load_before_*.csv",
+#         "tb_fm_pyro_meter_load_after_*.csv",
+#         "tb_fm_exit_os_thick_meas_*.csv",
+#         "tb_fm_exit_ds_thick_meas_*.csv",
+#     ],
+#     "PPL": [
+#         "tb_pre_leveller_speed_*.csv",
+#         "tb_pre_leveller_force_all_*.csv",
+#         "tb_pre_leveller_pyro_meter_load_after_*.csv",
+#     ],
+#     "UFC": [
+#         "tb_ufc_temp_meas_*.csv",
+#         "tb_ufc_water_press_set_*.csv",
+#         "tb_ufc_spiny_water_ratio_*.csv",
+#     ],
+#     "ACC": [
+#         "tb_acc_pyro_meter_load_before_*.csv",
+#         "tb_acc_pyro_meter_load_after_*.csv",
+#         "tb_acc_water_press_set_*.csv",
+#         "tb_acc_spiny_water_ratio_*.csv",
+#     ],
+#     "HPL": [
+#         "tb_hot_leveller_temp_entry_*.csv",
+#     ],
+#     "DESCALING": [
+#         "tb_desc_water_press_entry_*.csv",
+#         "tb_desc_water_press_exit_*.csv",
+#         "tb_desc_pyro_meter_load_after_*.csv",
+#     ],
+# }
+#
+#
+# # ====================== 配置 ======================
+# PROCESS_COLUMNS_CONFIG: Dict[str, Dict] = {
+#     "tb_rm_speed_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "RM_SPEED"},
+#     "tb_rm_roll_force": {"time_col": "ts", "value_cols": ["val"], "alias": "RM_FORCE"},
+#     "tb_rm_red_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "RM_RED"},
+#     "tb_rm_pyro_meter_load_before": {"time_col": "ts", "value_cols": ["val"], "alias": "RM_PYRO_BEFORE"},
+#     "tb_rm_pyro_meter_load_after": {"time_col": "ts", "value_cols": ["val"], "alias": "RM_PYRO_AFTER"},
+#     "tb_fm_speed_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_SPEED"},
+#     "tb_fm_roll_force_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_FORCE"},
+#     "tb_fm_red_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_RED"},
+#     "tb_fm_pyro_meter_load_before": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_PYRO_BEFORE"},
+#     "tb_fm_pyro_meter_load_after": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_PYRO_AFTER"},
+#     "tb_fm_exit_os_thick_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_EXIT_OS_THICK"},
+#     "tb_fm_exit_ds_thick_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "FM_EXIT_DS_THICK"},
+#     "tb_pre_leveller_speed": {"time_col": "ts", "value_cols": ["val"], "alias": "PPL_SPEED"},
+#     "tb_pre_leveller_force_all": {"time_col": "ts", "value_cols": ["val"], "alias": "PPL_FORCE"},
+#     "tb_pre_leveller_pyro_meter_load_after": {"time_col": "ts", "value_cols": ["val"], "alias": "PPL_PYRO_AFTER"},
+#     "tb_ufc_temp_meas": {"time_col": "ts", "value_cols": ["val"], "alias": "UFC_TEMP"},
+#     "tb_ufc_water_press_set": {"time_col": "ts", "value_cols": ["val"], "alias": "UFC_WATER_PRESS"},
+#     "tb_ufc_spiny_water_ratio": {"time_col": "ts", "value_cols": ["val"], "alias": "UFC_SPINY_WATER_RATIO"},
+#     "tb_acc_pyro_meter_load_before": {"time_col": "ts", "value_cols": ["val"], "alias": "ACC_PYRO_BEFORE"},
+#     "tb_acc_pyro_meter_load_after": {"time_col": "ts", "value_cols": ["val"], "alias": "ACC_PYRO_AFTER"},
+#     "tb_acc_water_press_set": {"time_col": "ts", "value_cols": ["val"], "alias": "ACC_WATER_PRESS"},
+#     "tb_acc_spiny_water_ratio": {"time_col": "ts", "value_cols": ["val"], "alias": "ACC_SPINY_WATER_RATIO"},
+#     "tb_hot_leveller_temp_entry": {"time_col": "ts", "value_cols": ["val"], "alias": "HPL_TEMP_ENTRY"},
+#     "tb_desc_water_press_entry": {"time_col": "ts", "value_cols": ["val"], "alias": "DESC_WATER_PRESS_ENTRY"},
+#     "tb_desc_water_press_exit": {"time_col": "ts", "value_cols": ["val"], "alias": "DESC_WATER_PRESS_EXIT"},
+#     "tb_desc_pyro_meter_load_after": {"time_col": "ts", "value_cols": ["val"], "alias": "DESC_PYRO_AFTER"},
+# }
+
+
 # ====================== 工序文件映射 ======================
 
 PROCEDURE_FILES: Dict[str, List[str]] = {
     "RM": [
-        "tb_rm_speed_meas_*.csv",
         "tb_rm_roll_force_*.csv",
         "tb_rm_red_meas_*.csv",
-        "tb_rm_pyro_meter_load_before_*.csv",
-        "tb_rm_pyro_meter_load_after_*.csv",
     ],
     "FM": [
         "tb_fm_speed_meas_*.csv",
-        "tb_fm_roll_force_meas_*.csv",
         "tb_fm_red_meas_*.csv",
         "tb_fm_pyro_meter_load_before_*.csv",
         "tb_fm_pyro_meter_load_after_*.csv",
-        "tb_fm_exit_os_thick_meas_*.csv",
-        "tb_fm_exit_ds_thick_meas_*.csv",
     ],
     "PPL": [
         "tb_pre_leveller_speed_*.csv",
@@ -75,8 +145,6 @@ PROCEDURE_FILES: Dict[str, List[str]] = {
         "tb_ufc_spiny_water_ratio_*.csv",
     ],
     "ACC": [
-        "tb_acc_pyro_meter_load_before_*.csv",
-        "tb_acc_pyro_meter_load_after_*.csv",
         "tb_acc_water_press_set_*.csv",
         "tb_acc_spiny_water_ratio_*.csv",
     ],
@@ -86,7 +154,6 @@ PROCEDURE_FILES: Dict[str, List[str]] = {
     "DESCALING": [
         "tb_desc_water_press_entry_*.csv",
         "tb_desc_water_press_exit_*.csv",
-        "tb_desc_pyro_meter_load_after_*.csv",
     ],
 }
 
